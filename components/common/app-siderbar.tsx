@@ -15,17 +15,17 @@ import {
 const items = [
   {
     title: "Leaderboard",
-    url: "#",
+    url: "/",
     icon: ChartNoAxesColumn,
   },
   {
     title: "Tournament",
-    url: "#",
+    url: "/tournament",
     icon: Trophy,
   },
   {
-    title: "Match",
-    url: "#",
+    title: "Matches",
+    url: "/matches",
     icon: UsersRound,
   },
 ]

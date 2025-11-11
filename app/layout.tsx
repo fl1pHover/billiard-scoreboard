@@ -35,8 +35,8 @@ export default function RootLayout({
             <AppSidebar />
             <main>
               <SidebarTrigger />
-              <Navbar />
-              {children}
+              {/* <Navbar /> */}
+              <div className="p-10">{children}</div>
             </main>
           </ThemeProvider>
         </SidebarProvider>

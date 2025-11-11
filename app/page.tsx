@@ -1,11 +1,14 @@
 import TestForm from "@/components/common/testForm";
+import Leaderboard from "./components/leaderboard";
+import { PlayerProvider } from "@/providers/player-provider";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center font-sans">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 sm:items-start">
+  <PlayerProvider>
+      <div className="p-6 max-w-md mx-auto">
         <TestForm />
-      </main>
-    </div>
+        <Leaderboard />
+      </div>
+    </PlayerProvider>
   );
 }
