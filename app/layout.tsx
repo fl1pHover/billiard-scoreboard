@@ -2,17 +2,12 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/providers/theme-provider";
-import Navbar from "@/components/common/navbar";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/common/app-siderbar";
+import { SidebarProvider } from "@/components/ui/sidebar";
 import { PlayerProvider } from "@/providers/player-provider";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import TestForm from "@/components/common/testForm";
-import Image from "next/image";
 import { ChartNoAxesColumn, Trophy, UsersRound } from "lucide-react";
 
 const geistSans = Geist({
@@ -48,19 +43,19 @@ export default function RootLayout({
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
             <PlayerProvider>
               {/* <AppSidebar /> */}
-              <main className="w-full relative p-10">
+              <main className="w-full max-w-6xl mx-auto relative p-4">
                 <Tabs defaultValue="leaderboard" className="bg-none">
                   <div className="w-full relative flex justify-between items-center">
                     <TabsList className="">
                       <TabsTrigger value="leaderboard">
                         <ChartNoAxesColumn /> Leaderboard
                       </TabsTrigger>
+                      <TabsTrigger value="tournament">
+                        <Trophy /> Tournament
+                      </TabsTrigger>
                       <TabsTrigger value="matches">
                         <UsersRound />
                         Matches
-                      </TabsTrigger>
-                      <TabsTrigger value="tournament">
-                        <Trophy /> Tournament
                       </TabsTrigger>
                     </TabsList>
                     <Dialog>

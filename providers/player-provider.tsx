@@ -5,6 +5,10 @@ import { createContext, useContext, useState } from "react";
 export type Player = {
   nickName: string;
   experience: number;
+  elo?: number;
+  total?: number;
+  win?: number;
+  // winRate: number;
 };
 
 const PlayerContext = createContext<{
