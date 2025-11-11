@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/providers/theme-provider";
 import Navbar from "@/components/common/navbar";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/common/app-siderbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,10 +30,16 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head />
       <body>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          <Navbar />
-          {children}
-        </ThemeProvider>
+        <SidebarProvider>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+            <AppSidebar />
+            <main>
+              <SidebarTrigger />
+              <Navbar />
+              {children}
+            </main>
+          </ThemeProvider>
+        </SidebarProvider>
       </body>
     </html>
   );
