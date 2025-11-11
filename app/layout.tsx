@@ -5,6 +5,13 @@ import { ThemeProvider } from "@/providers/theme-provider";
 import Navbar from "@/components/common/navbar";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/common/app-siderbar";
+import { PlayerProvider } from "@/providers/player-provider";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import TestForm from "@/components/common/testForm";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,8 +30,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  matches,
+  tournament,
 }: Readonly<{
   children: React.ReactNode;
+  matches: React.ReactNode;
+  tournament: React.ReactNode;
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
@@ -32,12 +43,37 @@ export default function RootLayout({
       <body>
         <SidebarProvider>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-            <AppSidebar />
-            <main>
-              <SidebarTrigger />
-              {/* <Navbar /> */}
-              <div className="p-10">{children}</div>
-            </main>
+            <PlayerProvider>
+              {/* <AppSidebar /> */}
+              <main className="w-full relative p-10 flex justify-between">
+                {/* <Navbar /> */}
+                <Tabs defaultValue="account" className="bg-none">
+                  <TabsList>
+                    <TabsTrigger value="leaderboard">Leaderboard</TabsTrigger>
+                    <TabsTrigger value="matches">Matches</TabsTrigger>
+                    <TabsTrigger value="tournament">Tournament</TabsTrigger>
+                  </TabsList>
+                  <TabsContent value="leaderboard">{children}</TabsContent>
+                  <TabsContent value="matches">{matches}</TabsContent>
+                  <TabsContent value="tournament">{tournament}</TabsContent>
+                </Tabs>
+                <Dialog>
+                  <form>
+                    <DialogTrigger asChild>
+                      <Button>Тоглогч нэмэх</Button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-[425px]">
+                      <DialogHeader>
+                        <DialogTitle>Тоглогч нэмэх</DialogTitle>
+                        <DialogDescription>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, quam!</DialogDescription>
+                      </DialogHeader>
+                      <TestForm />
+                    </DialogContent>
+                  </form>
+                </Dialog>
+                {/* <div className="p-10">{children}</div> */}
+              </main>
+            </PlayerProvider>
           </ThemeProvider>
         </SidebarProvider>
       </body>
