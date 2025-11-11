@@ -6,7 +6,7 @@ export default function Leaderboard() {
   const { players } = usePlayers();
 
   return (
-    <div className="space-y-2">
+    <div className="content-container">
       <h2 className="font-semibold text-xl">Leaderboard</h2>
       {players.length === 0 && <p>Одоогоор тоглогч байхгүй...</p>}
 

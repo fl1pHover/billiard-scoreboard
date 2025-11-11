@@ -30,7 +30,6 @@
 //   );
 // }
 
-
 "use client";
 
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -46,7 +45,12 @@ type Inputs = {
 export default function TestForm() {
   const { addPlayer } = usePlayers();
 
-  const { register, handleSubmit, formState: { errors }, reset } = useForm<Inputs>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     addPlayer(data);
@@ -56,9 +60,10 @@ export default function TestForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
       <Input placeholder="Тоглогчийн нэр" {...register("nickName", { required: true })} />
+      {errors.nickName && <span>Заавал бөглө</span>}
+      
       <Input type="number" placeholder="Тоглосон жил" {...register("experience")} />
 
-      {errors.nickName && <span>Заавал бөглө</span>}
 
       <Button type="submit">Тоглогч нэмэх</Button>
     </form>

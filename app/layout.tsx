@@ -12,6 +12,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import TestForm from "@/components/common/testForm";
+import Image from "next/image";
+import { ChartNoAxesColumn, Trophy, UsersRound } from "lucide-react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -41,37 +43,45 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head />
       <body>
+        {/* <Image src={"/bg.png"} alt="bg" fill={true} className="object-cover blur-md brightness-50" /> */}
         <SidebarProvider>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
             <PlayerProvider>
               {/* <AppSidebar /> */}
-              <main className="w-full relative p-10 flex justify-between">
-                {/* <Navbar /> */}
-                <Tabs defaultValue="account" className="bg-none">
-                  <TabsList>
-                    <TabsTrigger value="leaderboard">Leaderboard</TabsTrigger>
-                    <TabsTrigger value="matches">Matches</TabsTrigger>
-                    <TabsTrigger value="tournament">Tournament</TabsTrigger>
-                  </TabsList>
+              <main className="w-full relative p-10">
+                <Tabs defaultValue="leaderboard" className="bg-none">
+                  <div className="w-full relative flex justify-between items-center">
+                    <TabsList className="">
+                      <TabsTrigger value="leaderboard">
+                        <ChartNoAxesColumn /> Leaderboard
+                      </TabsTrigger>
+                      <TabsTrigger value="matches">
+                        <UsersRound />
+                        Matches
+                      </TabsTrigger>
+                      <TabsTrigger value="tournament">
+                        <Trophy /> Tournament
+                      </TabsTrigger>
+                    </TabsList>
+                    <Dialog>
+                      <form>
+                        <DialogTrigger asChild>
+                          <Button>Тоглогч нэмэх</Button>
+                        </DialogTrigger>
+                        <DialogContent className="sm:max-w-[425px]">
+                          <DialogHeader>
+                            <DialogTitle>Тоглогч нэмэх</DialogTitle>
+                            <DialogDescription>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, quam!</DialogDescription>
+                          </DialogHeader>
+                          <TestForm />
+                        </DialogContent>
+                      </form>
+                    </Dialog>
+                  </div>
                   <TabsContent value="leaderboard">{children}</TabsContent>
                   <TabsContent value="matches">{matches}</TabsContent>
                   <TabsContent value="tournament">{tournament}</TabsContent>
                 </Tabs>
-                <Dialog>
-                  <form>
-                    <DialogTrigger asChild>
-                      <Button>Тоглогч нэмэх</Button>
-                    </DialogTrigger>
-                    <DialogContent className="sm:max-w-[425px]">
-                      <DialogHeader>
-                        <DialogTitle>Тоглогч нэмэх</DialogTitle>
-                        <DialogDescription>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, quam!</DialogDescription>
-                      </DialogHeader>
-                      <TestForm />
-                    </DialogContent>
-                  </form>
-                </Dialog>
-                {/* <div className="p-10">{children}</div> */}
               </main>
             </PlayerProvider>
           </ThemeProvider>
