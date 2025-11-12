@@ -1,41 +1,10 @@
-// "use client";
-
-// import { useForm, SubmitHandler } from "react-hook-form";
-// import { Input } from "../ui/input";
-// import { Button } from "../ui/button";
-
-// type Inputs = {
-//   nickName: string;
-//   experience: number;
-// };
-
-// export default function TestForm() {
-//   const {
-//     register,
-//     handleSubmit,
-//     watch,
-//     formState: { errors },
-//   } = useForm<Inputs>();
-//   const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
-
-//   return (
-//     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
-//       <Input defaultValue="" placeholder="Тоглогчийн нэр" {...register("nickName", { required: true })} />
-//       <Input defaultValue="" type="number" placeholder="Тоглосон жил" {...register("experience", { required: true })} />
-
-//       {errors.nickName && <span>Заавал бөглө</span>}
-
-//       <Button type="submit">Тоглогч нэмэх</Button>
-//     </form>
-//   );
-// }
-
 "use client";
 
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { usePlayers } from "@/providers/player-provider";
+import { useStateMachine } from "little-state-machine";
 
 type Inputs = {
   nickName: string;

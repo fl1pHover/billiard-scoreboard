@@ -1,7 +1,7 @@
 "use client";
 
 import { usePlayers } from "@/providers/player-provider";
-import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
 export default function Leaderboard() {
   const { players } = usePlayers();
@@ -9,10 +9,9 @@ export default function Leaderboard() {
   return (
     <div className="content-container space-y-6">
       <h2 className="font-semibold text-xl">Players</h2>
-      {players.length === 0 && <p>Одоогоор тоглогч байхгүй...</p>}
 
       <Table className="border">
-        <TableHeader>
+        <TableHeader className="">
           <TableRow className="h-12 bg-muted/50">
             <TableHead className="w-[50px] text-center">#</TableHead>
             <TableHead>Player</TableHead>
@@ -28,17 +27,15 @@ export default function Leaderboard() {
             <TableRow key={i} className="h-12">
               <TableCell className="font-medium text-center">{i + 1}</TableCell>
               <TableCell>{p.nickName}</TableCell>
-              <TableCell>{p.experience} жил</TableCell>
+              <TableCell>{p.experience}</TableCell>
               <TableCell className="text-right">{p.total}</TableCell>
               <TableCell className="text-right">{p.win}</TableCell>
-              {/* <TableCell className="text-right">
-                {p.total > 0 ? ((p.win / p.total) * 100).toFixed(1) + "%" : "0%"}
-                </TableCell> */}
               <TableCell className="text-right">{p.elo}</TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
+      {players.length === 0 && <p className="text-center text-sm">Одоогоор тоглогч байхгүй.</p>}
     </div>
   );
 }
