@@ -9,6 +9,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { Button } from "@/components/ui/button";
 import TestForm from "@/components/common/testForm";
 import { ChartNoAxesColumn, Trophy, UsersRound } from "lucide-react";
+import { Toaster } from "@/components/ui/sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,6 +39,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head />
       <body>
+         <Toaster />
         {/* <Image src={"/bg.png"} alt="bg" fill={true} className="object-cover blur-md brightness-50" /> */}
         <SidebarProvider>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>

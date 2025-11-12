@@ -4,9 +4,7 @@ import { usePlayers } from "@/providers/player-provider";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-
+import { useToastMessage } from "@/components/common/toast-message";
 type Team = {
   name: string;
   players: string[];
@@ -14,10 +12,12 @@ type Team = {
 
 export default function Page() {
   const { players } = usePlayers();
+  const { showToast } = useToastMessage();
 
   const [teamA, setTeamA] = useState<string[]>([]);
   const [teamB, setTeamB] = useState<string[]>([]);
   const [status, setStatus] = useState<"idle" | "started">("idle");
+  const [showAlert, setShowAlert] = useState(false);
 
   const addToTeamA = (nick: string) => {
     if (!teamA.includes(nick) && !teamB.includes(nick)) {
@@ -33,7 +33,8 @@ export default function Page() {
 
   const startMatch = () => {
     if (teamA.length < 1 || teamB.length < 1) {
-      alert("Хоёр талаас дор хаяж 1 тоглогч сонгоорой.");
+      // alert("Хоёр талаас дор хаяж 1 тоглогч сонгоорой.");
+      showToast("error", "Анхаар!", "A болон B талаас дор хаяж 1 тоглогч сонгоорой!");
       return;
     }
     setStatus("started");
