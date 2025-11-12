@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { useToastMessage } from "@/components/common/toast-message";
+
 type Team = {
   name: string;
   players: string[];
@@ -17,7 +18,6 @@ export default function Page() {
   const [teamA, setTeamA] = useState<string[]>([]);
   const [teamB, setTeamB] = useState<string[]>([]);
   const [status, setStatus] = useState<"idle" | "started">("idle");
-  const [showAlert, setShowAlert] = useState(false);
 
   const addToTeamA = (nick: string) => {
     if (!teamA.includes(nick) && !teamB.includes(nick)) {
@@ -129,7 +129,9 @@ export default function Page() {
             <DialogClose asChild>
               <Button variant="outline">Цуцлах</Button>
             </DialogClose>
-            <Button onClick={startMatch}>Эхлүүлэх</Button>
+            <DialogClose asChild>
+              <Button onClick={startMatch}>Эхлүүлэх</Button>
+            </DialogClose>
           </DialogFooter>
         </DialogContent>
       </Dialog>
@@ -142,11 +144,13 @@ export default function Page() {
               </div>
             ))}
             <div className="flex flex-col gap-0.5 justify-center items-center">
-              <h1>
+              <h1 className="italic font-bold">
                 {teamA.length} VS {teamB.length}
               </h1>
-              <div className="bg-green-500 size-2 rounded-full"></div>
-              <h1>VS</h1>
+              <div className="flex items-center gap-2">
+                <div className="bg-green-500 size-2 rounded-full"></div>
+                <span className="text-xs">On Match</span>
+              </div>{" "}
             </div>
             {teamB.map((nick) => (
               <div key={nick} className="p-2 flex-1 flex justify-end">

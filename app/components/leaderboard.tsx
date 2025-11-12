@@ -1,6 +1,7 @@
 "use client";
 
 import { usePlayers } from "@/providers/player-provider";
+import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
 export default function Leaderboard() {
   const { players } = usePlayers();
@@ -10,18 +11,34 @@ export default function Leaderboard() {
       <h2 className="font-semibold text-xl">Players</h2>
       {players.length === 0 && <p>Одоогоор тоглогч байхгүй...</p>}
 
-      <ul className="space-y-1">
-        {players.map((p, i) => (
-          <li key={i} className="border-b last:border-b-none p-2 rounded flex justify-between">
-            <span className="font-medium">{p.nickName}</span>
-            <span className="font-medium">{p.experience} жил</span>
-            {/* <span className="font-medium">{p.win}</span>
-            <span className="font-medium">{p.win / p.total * 100}%</span>
-            <span className="font-medium">{p.total}</span>
-            <span className="font-medium">{p.elo}</span> */}
-          </li>
-        ))}
-      </ul>
+      <Table className="border">
+        <TableHeader>
+          <TableRow className="h-12 bg-muted/50">
+            <TableHead className="w-[50px] text-center">#</TableHead>
+            <TableHead>Player</TableHead>
+            <TableHead>Experience (year)</TableHead>
+            <TableHead className="text-right">Total</TableHead>
+            <TableHead className="text-right">Win</TableHead>
+            <TableHead className="text-right">Win Rate</TableHead>
+            <TableHead className="text-right">ELO</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {players.map((p, i) => (
+            <TableRow key={i} className="h-12">
+              <TableCell className="font-medium text-center">{i + 1}</TableCell>
+              <TableCell>{p.nickName}</TableCell>
+              <TableCell>{p.experience} жил</TableCell>
+              <TableCell className="text-right">{p.total}</TableCell>
+              <TableCell className="text-right">{p.win}</TableCell>
+              {/* <TableCell className="text-right">
+                {p.total > 0 ? ((p.win / p.total) * 100).toFixed(1) + "%" : "0%"}
+                </TableCell> */}
+              <TableCell className="text-right">{p.elo}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
     </div>
   );
 }
