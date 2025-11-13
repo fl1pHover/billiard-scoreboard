@@ -1,131 +1,14 @@
-// "use client";
-
-// import { useState } from "react";
-// import { useForm } from "react-hook-form";
-// import { useStateMachine, createStore } from "little-state-machine";
-// import { Table, TableBody, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-
-// interface IFormInputs {
-//   playerName: string;
-//   experience: number;
-//   isVeteran: boolean;
-// }
-
-// createStore(
-//   {
-//     data: {
-//       playerName: "",
-//       experience: 0,
-//       isVeteran: false,
-//     },
-//   },
-// );
-
-// function updateName(state: { data: any; }, payload: any) {
-//   return {
-//     ...state,
-//     data: {
-//       ...state.data,
-//       ...payload,
-//     },
-//   };
-// }
-
-// export default function Home() {
-//   const {
-//     register,
-//     handleSubmit,
-//     formState: { errors },
-//   } = useForm<IFormInputs>();
-//   const [submittedData, setSubmittedData] = useState<IFormInputs | null>(null);
-
-//   const onSubmit = (data: IFormInputs) => {
-//     setSubmittedData(data);
-//   };
-
-//   // const { players } = usePlayers();
-//   return (
-//     <div className="">
-//       <div className="content-container space-y-6">
-//         <h2 className="font-semibold text-xl">Players</h2>
-
-//         <form onSubmit={handleSubmit(onSubmit)}>
-//           <div>
-//             <label>Player name</label>
-//             <input {...register("playerName")} placeholder="" className="border" />
-//             {errors?.playerName && <p>{errors.playerName.message}</p>}
-//           </div>
-//           <div>
-//             <label>Experience</label>
-//             <input type="number" {...register("experience")} placeholder="" className="border" />
-//             {errors?.experience && <p>{errors.experience.message}</p>}
-//           </div>
-
-//           <div>
-//             <label htmlFor="isDeveloper">Are you veteran?</label>
-//             <input type="checkbox" {...register("isVeteran")} placeholder="luo" value="yes" />
-//           </div>
-//           <input type="submit" />
-//           {submittedData && (
-//             <h1 className="text-xl font-bold mt-4">
-//               {submittedData.playerName} - {submittedData.experience} years - {submittedData.isVeteran ? "Veteran" : "Newbie"}
-//             </h1>
-//           )}
-//         </form>
-
-//       </div>
-//     </div>
-//   );
-// }
-
-// import { createStore, useStateMachine } from 'little-state-machine';
-// import React from 'react'
-// import updateAction from './updateAction';
-// import { useForm } from 'react-hook-form';
-
-// createStore({});
-
-// export default function App() {
-
-//   const { register, handleSubmit } = useForm();
-//   const { actions, state } = useStateMachine({ actions: { updateAction } });
-
-//   const onSubmit = (data) => {
-//     alert(JSON.stringify(actions));
-//     actions.updateAction(data);
-//     props.history.push("./step2");
-//   };
-//   console.log('asd');
-
-//   return (
-//      <section>
-//       <form onSubmit={handleSubmit(onSubmit)}>
-//         <label>First name:</label>
-//         <input
-//           name="firstname"
-//           placeholder="First name"
-//           ref={register}
-//           defaultValue={state.yourDetails.firstname}
-//         />
-//         <label>Last name:</label>
-//         <input
-//           name="lastname"
-//           placeholder="Last name"
-//           ref={register}
-//           defaultValue={state.yourDetails.lastname}
-//         />
-//         <input type="submit" />
-//       </form>
-//     </section>
-
-//   )
-// }
-
-// page.tsx
 "use client";
 
-import { createStore } from "little-state-machine";
+import { createStore, useStateMachine } from "little-state-machine";
 import PlayerList from "./components/playerList";
+import { SubmitHandler, useForm } from "react-hook-form";
+import DialogBox from "@/components/common/dialogBox";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { DialogClose } from "@radix-ui/react-dialog";
+import { DialogFooter } from "@/components/ui/dialog";
+import { useToastMessage } from "@/components/common/toast-message";
 
 // Player type
 export interface Player {
@@ -141,7 +24,7 @@ declare module "little-state-machine" {
   }
 }
 
-// Store initialization
+// Store initial
 createStore({
   players: [],
 });
@@ -154,7 +37,58 @@ export function addPlayer(state: { players: Player[] }, payload: Player) {
   };
 }
 
-// Component
-export default function Home() {
-  return <PlayerList />;
+export default function App() {
+  const { showToast } = useToastMessage();
+
+  const { state, actions } = useStateMachine({ actions: { addPlayer } });
+
+  const { register, handleSubmit, reset } = useForm<Player>({
+    defaultValues: {
+      playerName: "",
+      experience: undefined,
+      // isVeteran: false,
+    },
+  });
+
+  const onSubmit: SubmitHandler<Player> = (data) => {
+    actions.addPlayer(data);
+    reset();
+    showToast("success", `Тоглогч ${data.playerName} нэмэгдлээ!`);
+  };
+
+  return (
+    <section className="space-y-6 content-container">
+      <DialogBox
+        trigger={<Button>Тоглогч нэмэх</Button>}
+        title="Шинэ тоглогч нэмэх"
+        description={
+          "А болон B талаас нэг болон түүнээс дээш тоглогч сонгон эхлүүлээрэй."
+        }
+        containerClass="max-w-sm!"
+      >
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          <Input {...register("playerName")} placeholder="Тоглогчийн нэр" />
+          <Input
+            type="number"
+            {...register("experience")}
+            placeholder="Тоглосон жил"
+          />
+          {/* <label>
+          <input type="checkbox" {...register("isVeteran")} /> Veteran?
+        </label> */}
+          <DialogFooter>
+            <DialogClose asChild>
+              <Button variant="outline" className="mr-2">
+                Цуцлах
+              </Button>
+            </DialogClose>
+            <Button type="submit" className="flex">
+              Тоглогчийн нэмэх
+            </Button>
+          </DialogFooter>
+        </form>
+      </DialogBox>
+      <PlayerList />
+    </section>
+  );
 }

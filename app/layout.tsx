@@ -29,7 +29,6 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head />
       <body>
-        <Toaster />
         {/* <SidebarProvider> */}
         <ThemeProvider
           attribute="class"
@@ -37,8 +36,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <Toaster />
           {/* <AppSidebar /> */}
-          <main className="w-full max-w-6xl mx-auto relative p-4">
+          <main className="max-w-6xl w-full mx-auto relative px-4">
             <Navbar />
             {children}
           </main>

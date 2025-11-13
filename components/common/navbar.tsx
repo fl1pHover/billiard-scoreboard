@@ -9,7 +9,7 @@ export default function Navbar() {
   const pathname = usePathname();
 
   return (
-    <div className="flex relative items-center justify-between w-full">
+    <nav className="flex relative items-center justify-between w-full">
       {/* <SidebarTrigger className="absolute top-4 border border-l-0 rounded-l-none left-0" /> */}
       <div className="flex items-center justify-between w-full border-b py-4">
         <div className="flex items-center gap-10">
@@ -29,8 +29,8 @@ export default function Navbar() {
           </div>
           <div className="link-div group">
             <Link
-              href="/"
-              className={cn(pathname === "/" ? "active-link" : "link")}
+              href="/empty"
+              className={cn(pathname === "/empty" ? "active-link" : "link")}
             >
               Empty
               <div
@@ -46,6 +46,6 @@ export default function Navbar() {
           <ModeToggle />
         </div>
       </div>
-    </div>
+    </nav>
   );
 }
