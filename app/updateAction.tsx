@@ -1,4 +1,4 @@
-import { Player } from "./store";
+import { Player } from "./page";
 
 export default function updateAction(
   state: { players: Player[] },

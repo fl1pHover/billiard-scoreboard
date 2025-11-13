@@ -45,10 +45,6 @@ export default function PlayerList() {
             </TableRow>
           ))
         )}
-
-        {/* <TableRow>
-            <TableCell>{playerData[0].playerName}</TableCell>
-          </TableRow> */}
       </TableBody>
     </Table>
   );

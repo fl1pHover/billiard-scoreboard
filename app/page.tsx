@@ -34,7 +34,10 @@ createStore({
 });
 
 // Action
-export function addPlayer(state: { players: Player[] }, payload: {players: Player[]}) {
+export function addPlayer(
+  state: { players: Player[] },
+  payload: { players: Player[] },
+) {
   return {
     ...state,
     players: [...state.players, payload],
@@ -50,29 +53,33 @@ export default function App() {
     defaultValues: {
       playerName: "",
       experience: undefined,
-      // isVeteran: false,
     },
   });
 
-  const idRef = useRef(1);
-
   const onSubmit: SubmitHandler<Player> = (data) => {
     actions.addPlayer(data);
-    // idRef.current += 1;
     showToast("success", `Тоглогч ${data.playerName} нэмэгдлээ!`);
-    
+
     reset();
   };
 
   return (
     <section className="space-y-6 content-container">
-      <DialogBox trigger={<Button>Тоглогч нэмэх</Button>} title="Шинэ тоглогч нэмэх" description={"А болон B талаас нэг болон түүнээс дээш тоглогч сонгон эхлүүлээрэй."} containerClass="max-w-sm!">
+      <DialogBox
+        trigger={<Button>Тоглогч нэмэх</Button>}
+        title="Шинэ тоглогч нэмэх"
+        description={
+          "А болон B талаас нэг болон түүнээс дээш тоглогч сонгон эхлүүлээрэй."
+        }
+        containerClass="max-w-sm!"
+      >
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <Input {...register("playerName")} placeholder="Тоглогчийн нэр" />
-          <Input type="number" {...register("experience")} placeholder="Тоглосон жил" />
-          {/* <label>
-          <input type="checkbox" {...register("isVeteran")} /> Veteran?
-        </label> */}
+          <Input
+            type="number"
+            {...register("experience")}
+            placeholder="Тоглосон жил"
+          />
           <DialogFooter>
             <DialogClose asChild>
               <Button variant="outline" className="mr-2">

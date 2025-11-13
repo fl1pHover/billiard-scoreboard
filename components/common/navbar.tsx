@@ -10,7 +10,6 @@ export default function Navbar() {
 
   return (
     <nav className="flex relative items-center justify-between w-full">
-      {/* <SidebarTrigger className="absolute top-4 border border-l-0 rounded-l-none left-0" /> */}
       <div className="flex items-center justify-between w-full border-b py-4">
         <div className="flex items-center gap-10">
           <div className="link-div group">
