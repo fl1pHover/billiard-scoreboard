@@ -67,34 +67,6 @@ export default function PlayerList() {
           </DialogFooter>
         </form>
       </DialogBox>
-      <Dialog>
-        <DialogTrigger asChild>
-          <Button>Тоглогч нэмэх</Button>
-        </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px]">
-          <DialogHeader>
-            <DialogTitle>Тоглогч нэмэх</DialogTitle>
-            <DialogDescription>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, quam!</DialogDescription>
-          </DialogHeader>
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-            <Input {...register("playerName")} placeholder="Тоглогчийн нэр" />
-            <Input type="number" {...register("experience")} placeholder="Тоглосон жил" />
-            {/* <label>
-          <input type="checkbox" {...register("isVeteran")} /> Veteran?
-        </label> */}
-            <DialogFooter>
-              <DialogClose>
-                <Button variant="outline" className="mr-2">
-                  Цуцлах
-                </Button>
-              </DialogClose>
-              <Button type="submit" className="flex">
-                Тоглогчийн нэмэх
-              </Button>
-            </DialogFooter>
-          </form>
-        </DialogContent>
-      </Dialog>
 
       <Table className="border">
         <TableHeader className="">
