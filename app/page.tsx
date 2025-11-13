@@ -9,6 +9,8 @@ import { Input } from "@/components/ui/input";
 import { DialogClose } from "@radix-ui/react-dialog";
 import { DialogFooter } from "@/components/ui/dialog";
 import { useToastMessage } from "@/components/common/toast-message";
+import { useRef } from "react";
+import { Match } from "./matches/page";
 
 // Player type
 export interface Player {
@@ -21,16 +23,18 @@ export interface Player {
 declare module "little-state-machine" {
   interface GlobalState {
     players: Player[];
+    matches: Match[];
   }
 }
 
 // Store initial
 createStore({
   players: [],
+  matches: [],
 });
 
 // Action
-export function addPlayer(state: { players: Player[] }, payload: Player) {
+export function addPlayer(state: { players: Player[] }, payload: {players: Player[]}) {
   return {
     ...state,
     players: [...state.players, payload],
@@ -40,7 +44,7 @@ export function addPlayer(state: { players: Player[] }, payload: Player) {
 export default function App() {
   const { showToast } = useToastMessage();
 
-  const { state, actions } = useStateMachine({ actions: { addPlayer } });
+  const { actions } = useStateMachine({ actions: { addPlayer } });
 
   const { register, handleSubmit, reset } = useForm<Player>({
     defaultValues: {
@@ -50,29 +54,22 @@ export default function App() {
     },
   });
 
+  const idRef = useRef(1);
+
   const onSubmit: SubmitHandler<Player> = (data) => {
     actions.addPlayer(data);
-    reset();
+    // idRef.current += 1;
     showToast("success", `Тоглогч ${data.playerName} нэмэгдлээ!`);
+    
+    reset();
   };
 
   return (
     <section className="space-y-6 content-container">
-      <DialogBox
-        trigger={<Button>Тоглогч нэмэх</Button>}
-        title="Шинэ тоглогч нэмэх"
-        description={
-          "А болон B талаас нэг болон түүнээс дээш тоглогч сонгон эхлүүлээрэй."
-        }
-        containerClass="max-w-sm!"
-      >
+      <DialogBox trigger={<Button>Тоглогч нэмэх</Button>} title="Шинэ тоглогч нэмэх" description={"А болон B талаас нэг болон түүнээс дээш тоглогч сонгон эхлүүлээрэй."} containerClass="max-w-sm!">
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <Input {...register("playerName")} placeholder="Тоглогчийн нэр" />
-          <Input
-            type="number"
-            {...register("experience")}
-            placeholder="Тоглосон жил"
-          />
+          <Input type="number" {...register("experience")} placeholder="Тоглосон жил" />
           {/* <label>
           <input type="checkbox" {...register("isVeteran")} /> Veteran?
         </label> */}

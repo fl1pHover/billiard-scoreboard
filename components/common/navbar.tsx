@@ -29,14 +29,14 @@ export default function Navbar() {
           </div>
           <div className="link-div group">
             <Link
-              href="/empty"
-              className={cn(pathname === "/empty" ? "active-link" : "link")}
+              href="/matches"
+              className={cn(pathname === "/matches" ? "active-link" : "link")}
             >
-              Empty
+              Matches
               <div
                 className={cn(
                   "absolute bg-primary w-0 h-1 bottom-0 left-0 group-hover:w-full duration-300",
-                  pathname === "/empty" ? "w-full" : "w-0 group-hover:w-full",
+                  pathname === "/matches" ? "w-full" : "w-0 group-hover:w-full",
                 )}
               ></div>
             </Link>
