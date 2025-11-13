@@ -126,4 +126,16 @@
   .content-container {
     @apply py-10
   }
+
+  .link-div {
+    @apply py-2 relative text-lg tracking-wider font-semibold min-w-20 text-center;
+  }
+
+  .active-link {
+    @apply py-2 text-lg tracking-wider font-semibold;
+  }
+
+  .link {
+    @apply py-2 text-lg tracking-wider font-semibold;
+  }
 }

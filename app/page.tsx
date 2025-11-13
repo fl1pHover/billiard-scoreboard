@@ -131,8 +131,7 @@
 // page.tsx
 "use client";
 
-import { createStore, useStateMachine } from "little-state-machine";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { createStore } from "little-state-machine";
 import PlayerList from "./components/playerList";
 
 // Player type

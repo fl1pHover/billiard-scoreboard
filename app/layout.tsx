@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/providers/theme-provider";
-import { SidebarProvider } from "@/components/ui/sidebar";
 import { Toaster } from "@/components/ui/sonner";
+import Navbar from "@/components/common/navbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,29 +22,26 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-  matches,
-  tournament,
 }: Readonly<{
   children: React.ReactNode;
-  matches: React.ReactNode;
-  tournament: React.ReactNode;
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head />
       <body>
         <Toaster />
-        <SidebarProvider>
+        {/* <SidebarProvider> */}
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
             {/* <PlayerProvider> */}
               {/* <AppSidebar /> */}
               <main className="w-full max-w-6xl mx-auto relative p-4">
+                <Navbar />
                 {children}
                
               </main>
             {/* </PlayerProvider> */}
           </ThemeProvider>
-        </SidebarProvider>
+        {/* </SidebarProvider> */}
       </body>
     </html>
   );
