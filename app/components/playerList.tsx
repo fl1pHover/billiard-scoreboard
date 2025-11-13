@@ -3,7 +3,10 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { createStore, useStateMachine } from "little-state-machine";
 import { useForm, SubmitHandler } from "react-hook-form";
-
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import DialogBox from "@/components/common/dialogBox";
 export interface Player {
   playerName: string;
   experience: number;
@@ -33,7 +36,7 @@ export default function PlayerList() {
   const { register, handleSubmit, reset } = useForm<Player>({
     defaultValues: {
       playerName: "",
-      experience: 0,
+      experience: undefined,
       // isVeteran: false,
     },
   });
@@ -45,14 +48,53 @@ export default function PlayerList() {
 
   return (
     <div>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input {...register("playerName")} placeholder="Name" />
-        <input type="number" {...register("experience")} placeholder="Experience" />
-        {/* <label>
+      <DialogBox trigger={<Button>Тоглогч нэмэх</Button>} title="Шинэ тоглогч нэмэх" description={"А болон B талаас нэг болон түүнээс дээш тоглогч сонгон эхлүүлээрэй."} containerClass="max-w-sm!">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          <Input {...register("playerName")} placeholder="Тоглогчийн нэр" />
+          <Input type="number" {...register("experience")} placeholder="Тоглосон жил" />
+          {/* <label>
           <input type="checkbox" {...register("isVeteran")} /> Veteran?
         </label> */}
-        <button type="submit">Add</button>
-      </form>
+          <DialogFooter>
+            <DialogClose asChild>
+              <Button variant="outline" className="mr-2">
+                Цуцлах
+              </Button>
+            </DialogClose>
+            <Button type="submit" className="flex">
+              Тоглогчийн нэмэх
+            </Button>
+          </DialogFooter>
+        </form>
+      </DialogBox>
+      <Dialog>
+        <DialogTrigger asChild>
+          <Button>Тоглогч нэмэх</Button>
+        </DialogTrigger>
+        <DialogContent className="sm:max-w-[425px]">
+          <DialogHeader>
+            <DialogTitle>Тоглогч нэмэх</DialogTitle>
+            <DialogDescription>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, quam!</DialogDescription>
+          </DialogHeader>
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            <Input {...register("playerName")} placeholder="Тоглогчийн нэр" />
+            <Input type="number" {...register("experience")} placeholder="Тоглосон жил" />
+            {/* <label>
+          <input type="checkbox" {...register("isVeteran")} /> Veteran?
+        </label> */}
+            <DialogFooter>
+              <DialogClose>
+                <Button variant="outline" className="mr-2">
+                  Цуцлах
+                </Button>
+              </DialogClose>
+              <Button type="submit" className="flex">
+                Тоглогчийн нэмэх
+              </Button>
+            </DialogFooter>
+          </form>
+        </DialogContent>
+      </Dialog>
 
       <Table className="border">
         <TableHeader className="">
@@ -71,7 +113,7 @@ export default function PlayerList() {
             <TableRow key={i} className="h-12">
               <TableCell className="font-medium text-center">{i + 1}</TableCell>
               <TableCell> {p.playerName ? p.playerName : "Player" + (i + 1)}</TableCell>
-              <TableCell>{p.experience}</TableCell>
+              <TableCell>{p.experience ? p.experience : 0}</TableCell>
             </TableRow>
           ))}
         </TableBody>

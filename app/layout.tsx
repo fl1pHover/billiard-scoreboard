@@ -38,7 +38,6 @@ export default function RootLayout({
       <head />
       <body>
         <Toaster />
-        {/* <Image src={"/bg.png"} alt="bg" fill={true} className="object-cover blur-md brightness-50" /> */}
         <SidebarProvider>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
             {/* <PlayerProvider> */}
@@ -58,20 +57,7 @@ export default function RootLayout({
                         Matches
                       </TabsTrigger>
                     </TabsList>
-                    <Dialog>
-                      <form>
-                        <DialogTrigger asChild>
-                          <Button>Тоглогч нэмэх</Button>
-                        </DialogTrigger>
-                        <DialogContent className="sm:max-w-[425px]">
-                          <DialogHeader>
-                            <DialogTitle>Тоглогч нэмэх</DialogTitle>
-                            <DialogDescription>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, quam!</DialogDescription>
-                          </DialogHeader>
-                          {/* <TestForm /> */}
-                        </DialogContent>
-                      </form>
-                    </Dialog>
+               
                   </div>
                   <TabsContent value="leaderboard">{children}</TabsContent>
                   <TabsContent value="matches">{matches}</TabsContent>

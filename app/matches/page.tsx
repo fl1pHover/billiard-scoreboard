@@ -1,6 +1,5 @@
 "use client";
 
-import { usePlayers } from "@/providers/player-provider";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { DialogClose } from "@/components/ui/dialog";
@@ -8,7 +7,7 @@ import { useToastMessage } from "@/components/common/toast-message";
 import DialogBox from "@/components/common/dialogBox";
 
 export default function Page() {
-  const { players } = usePlayers();
+  // const { players } = usePlayers();
   const { showToast } = useToastMessage();
 
   const [teamA, setTeamA] = useState<string[]>([]);
@@ -72,7 +71,7 @@ export default function Page() {
           <div className="">
             <h2 className="font-semibold mb-4">Тоглогчид</h2>
             <div className="grid grid-cols-3 gap-4">
-              {players.map((p) => (
+              {/* {players.map((p) => (
                 <div key={p.nickName} className="p-2 border rounded">
                   <div className="font-medium">{p.nickName}</div>
                   <div className="text-xs opacity-60 py-2 border-b">
@@ -87,7 +86,7 @@ export default function Page() {
                     </Button>
                   </div>
                 </div>
-              ))}
+              ))} */}
             </div>
           </div>
           <div className="space-y-4">
