@@ -219,6 +219,7 @@ import DialogBox from "@/components/common/dialogBox";
 import { Button } from "@/components/ui/button";
 import { DialogClose } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { SubmitHandler } from "react-hook-form";
 
 export interface Match {
   id: string;
@@ -236,7 +237,7 @@ export function addMatch(state: { matches: Match[] }, payload: Match) {
 }
 
 export default function PlayerList() {
-  const { state } = useStateMachine({ actions: { addPlayer } });
+  const { state, actions } = useStateMachine({ actions: { addPlayer } });
   const [selectedPlayers, setSelectedPlayers] = useState<string[]>([]);
   const [activeMatch, setActiveMatch] = useState<string[]>([]);
 
@@ -252,6 +253,14 @@ export default function PlayerList() {
       alert("Хоёр тоглогч сонгоно уу!");
     }
   };
+
+   const onSubmit: SubmitHandler<Player> = (data) => {
+      actions.addPlayer(data);
+      // idRef.current += 1;
+      showToast("success", `Тоглогч ${data.playerName} нэмэгдлээ!`);
+      
+      reset();
+    };
 
   return (
     <div className="content-container space-y-6">
