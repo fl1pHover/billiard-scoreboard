@@ -1,7 +1,29 @@
 import React from "react";
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
-export default function DialogBox({ trigger, title, description, children, footer, containerClass}: { trigger: React.ReactNode; title: string; description?: string; children: React.ReactNode; footer?: React.ReactNode, containerClass?: string; }) {
+export default function DialogBox({
+  trigger,
+  title,
+  description,
+  children,
+  footer,
+  containerClass,
+}: {
+  trigger: React.ReactNode;
+  title: string;
+  description?: string;
+  children: React.ReactNode;
+  footer?: React.ReactNode;
+  containerClass?: string;
+}) {
   return (
     <Dialog>
       <DialogTrigger asChild>

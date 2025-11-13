@@ -6,11 +6,7 @@ import { CheckCircle2, Info, XCircle } from "lucide-react";
 type ToastType = "success" | "error" | "info";
 
 export function useToastMessage() {
-  const showToast = (
-    type: ToastType,
-    title: string,
-    description?: string
-  ) => {
+  const showToast = (type: ToastType, title: string, description?: string) => {
     const base = {
       description,
       duration: 3000,

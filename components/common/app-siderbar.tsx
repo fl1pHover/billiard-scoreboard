@@ -1,15 +1,15 @@
-import { ChartNoAxesColumn, Trophy, UsersRound } from "lucide-react"
+import { ChartNoAxesColumn, Trophy, UsersRound } from "lucide-react";
 
 import {
- Sidebar,
- SidebarContent,
- SidebarGroup,
- SidebarGroupContent,
- SidebarGroupLabel,
- SidebarMenu,
- SidebarMenuButton,
- SidebarMenuItem,
-} from "@/components/ui/sidebar"
+  Sidebar,
+  SidebarContent,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+} from "@/components/ui/sidebar";
 
 // Menu items.
 const items = [
@@ -28,7 +28,7 @@ const items = [
     url: "/matches",
     icon: UsersRound,
   },
-]
+];
 
 export function AppSidebar() {
   return (
@@ -53,5 +53,5 @@ export function AppSidebar() {
         </SidebarGroup>
       </SidebarContent>
     </Sidebar>
-  )
+  );
 }

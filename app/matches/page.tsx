@@ -29,7 +29,11 @@ export default function Page() {
   const startMatch = () => {
     if (teamA.length < 1 || teamB.length < 1) {
       // alert("Хоёр талаас дор хаяж 1 тоглогч сонгоорой.");
-      showToast("error", "Анхаар!", "A болон B талаас дор хаяж 1 тоглогч сонгоорой!");
+      showToast(
+        "error",
+        "Анхаар!",
+        "A болон B талаас дор хаяж 1 тоглогч сонгоорой!",
+      );
       return;
     }
     setStatus("started");
@@ -98,12 +102,21 @@ export default function Page() {
             <div className="grid grid-cols-3 gap-10">
               {/* Team A */}
               <div>
-                <h2 className="font-semibold mb-4">Team A - ( {teamA.length} тоглогч )</h2>
+                <h2 className="font-semibold mb-4">
+                  Team A - ( {teamA.length} тоглогч )
+                </h2>
                 <ul className="space-y-2">
                   {teamA.map((nick) => (
-                    <li key={nick} className="p-2 pl-3 border rounded flex justify-between items-center">
+                    <li
+                      key={nick}
+                      className="p-2 pl-3 border rounded flex justify-between items-center"
+                    >
                       <span>{nick}</span>
-                      <Button size="sm" variant="ghost" onClick={() => removeFromTeamA(nick)}>
+                      <Button
+                        size="sm"
+                        variant="ghost"
+                        onClick={() => removeFromTeamA(nick)}
+                      >
                         ✕
                       </Button>
                     </li>
@@ -116,12 +129,21 @@ export default function Page() {
               </div>
               {/* Team B */}
               <div>
-                <h2 className="font-semibold mb-4">Team B - ( {teamB.length} тоглогч )</h2>
+                <h2 className="font-semibold mb-4">
+                  Team B - ( {teamB.length} тоглогч )
+                </h2>
                 <ul className="space-y-2">
                   {teamB.map((nick) => (
-                    <li key={nick} className="p-2 pl-3 border rounded flex justify-between items-center">
+                    <li
+                      key={nick}
+                      className="p-2 pl-3 border rounded flex justify-between items-center"
+                    >
                       <span>{nick}</span>
-                      <Button size="sm" variant="ghost" onClick={() => removeFromTeamB(nick)}>
+                      <Button
+                        size="sm"
+                        variant="ghost"
+                        onClick={() => removeFromTeamB(nick)}
+                      >
                         ✕
                       </Button>
                     </li>

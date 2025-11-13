@@ -31,16 +31,18 @@ export default function RootLayout({
       <body>
         <Toaster />
         {/* <SidebarProvider> */}
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-            {/* <PlayerProvider> */}
-              {/* <AppSidebar /> */}
-              <main className="w-full max-w-6xl mx-auto relative p-4">
-                <Navbar />
-                {children}
-               
-              </main>
-            {/* </PlayerProvider> */}
-          </ThemeProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {/* <AppSidebar /> */}
+          <main className="w-full max-w-6xl mx-auto relative p-4">
+            <Navbar />
+            {children}
+          </main>
+        </ThemeProvider>
         {/* </SidebarProvider> */}
       </body>
     </html>

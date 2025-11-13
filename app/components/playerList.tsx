@@ -1,6 +1,13 @@
 "use client";
 
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 import { createStore, useStateMachine } from "little-state-machine";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { DialogClose, DialogFooter } from "@/components/ui/dialog";
@@ -8,7 +15,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import DialogBox from "@/components/common/dialogBox";
 export interface Player {
-  playerName: string;
+      playerName: string;
   experience: number;
   isVeteran: boolean;
 }
@@ -48,10 +55,21 @@ export default function PlayerList() {
 
   return (
     <div className="content-container space-y-6">
-      <DialogBox trigger={<Button>Тоглогч нэмэх</Button>} title="Шинэ тоглогч нэмэх" description={"А болон B талаас нэг болон түүнээс дээш тоглогч сонгон эхлүүлээрэй."} containerClass="max-w-sm!">
+      <DialogBox
+        trigger={<Button>Тоглогч нэмэх</Button>}
+        title="Шинэ тоглогч нэмэх"
+        description={
+          "А болон B талаас нэг болон түүнээс дээш тоглогч сонгон эхлүүлээрэй."
+        }
+        containerClass="max-w-sm!"
+      >
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <Input {...register("playerName")} placeholder="Тоглогчийн нэр" />
-          <Input type="number" {...register("experience")} placeholder="Тоглосон жил" />
+          <Input
+            type="number"
+            {...register("experience")}
+            placeholder="Тоглосон жил"
+          />
           {/* <label>
           <input type="checkbox" {...register("isVeteran")} /> Veteran?
         </label> */}
@@ -84,7 +102,10 @@ export default function PlayerList() {
           {state.players.map((p: Player, i: number) => (
             <TableRow key={i} className="h-12">
               <TableCell className="font-medium text-center">{i + 1}</TableCell>
-              <TableCell> {p.playerName ? p.playerName : "Player" + (i + 1)}</TableCell>
+              <TableCell>
+                {" "}
+                {p.playerName ? p.playerName : "Player" + (i + 1)}
+              </TableCell>
               <TableCell>{p.experience ? p.experience : 0}</TableCell>
             </TableRow>
           ))}

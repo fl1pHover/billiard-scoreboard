@@ -31,7 +31,6 @@
 //   };
 // }
 
-
 // export default function Home() {
 //   const {
 //     register,
@@ -79,8 +78,6 @@
 //   );
 // }
 
-
-
 // import { createStore, useStateMachine } from 'little-state-machine';
 // import React from 'react'
 // import updateAction from './updateAction';
@@ -120,13 +117,9 @@
 //         <input type="submit" />
 //       </form>
 //     </section>
-    
+
 //   )
 // }
-
-
-
-
 
 // page.tsx
 "use client";
@@ -163,8 +156,5 @@ export function addPlayer(state: { players: Player[] }, payload: Player) {
 
 // Component
 export default function Home() {
-
-  return (
-    <PlayerList />
-  );
+  return <PlayerList />;
 }
