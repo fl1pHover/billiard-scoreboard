@@ -220,6 +220,7 @@ import { Button } from "@/components/ui/button";
 import { DialogClose } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { SubmitHandler } from "react-hook-form";
+import { useToastMessage } from "@/components/common/toast-message";
 
 export interface Match {
   id: string;
@@ -237,6 +238,7 @@ export function addMatch(state: { matches: Match[] }, payload: Match) {
 }
 
 export default function PlayerList() {
+  const { showToast } = useToastMessage();
   const { state, actions } = useStateMachine({ actions: { addPlayer } });
   const [selectedPlayers, setSelectedPlayers] = useState<string[]>([]);
   const [activeMatch, setActiveMatch] = useState<string[]>([]);
@@ -250,7 +252,8 @@ export default function PlayerList() {
       setActiveMatch(selectedPlayers);
       setSelectedPlayers([]);
     } else {
-      alert("Хоёр тоглогч сонгоно уу!");
+      // alert("Хоёр тоглогч сонгоно уу!");
+      showToast("error", `Хоёр тоглогч сонгоно уу`);
     }
   };
 
@@ -258,8 +261,6 @@ export default function PlayerList() {
       actions.addPlayer(data);
       // idRef.current += 1;
       showToast("success", `Тоглогч ${data.playerName} нэмэгдлээ!`);
-      
-      reset();
     };
 
   return (
