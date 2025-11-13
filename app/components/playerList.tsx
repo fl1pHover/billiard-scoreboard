@@ -47,7 +47,7 @@ export default function PlayerList() {
   };
 
   return (
-    <div>
+    <div className="content-container space-y-6">
       <DialogBox trigger={<Button>Тоглогч нэмэх</Button>} title="Шинэ тоглогч нэмэх" description={"А болон B талаас нэг болон түүнээс дээш тоглогч сонгон эхлүүлээрэй."} containerClass="max-w-sm!">
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <Input {...register("playerName")} placeholder="Тоглогчийн нэр" />

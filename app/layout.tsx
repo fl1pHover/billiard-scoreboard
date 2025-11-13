@@ -3,10 +3,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/providers/theme-provider";
 import { SidebarProvider } from "@/components/ui/sidebar";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { ChartNoAxesColumn, Trophy, UsersRound } from "lucide-react";
 import { Toaster } from "@/components/ui/sonner";
 
 const geistSans = Geist({
@@ -43,26 +39,8 @@ export default function RootLayout({
             {/* <PlayerProvider> */}
               {/* <AppSidebar /> */}
               <main className="w-full max-w-6xl mx-auto relative p-4">
-                <Tabs defaultValue="leaderboard" className="bg-none">
-                  <div className="w-full relative flex justify-between items-center">
-                    <TabsList className="">
-                      <TabsTrigger value="leaderboard">
-                        <ChartNoAxesColumn /> Leaderboard
-                      </TabsTrigger>
-                      <TabsTrigger value="tournament">
-                        <Trophy /> Tournament
-                      </TabsTrigger>
-                      <TabsTrigger value="matches">
-                        <UsersRound />
-                        Matches
-                      </TabsTrigger>
-                    </TabsList>
+                {children}
                
-                  </div>
-                  <TabsContent value="leaderboard">{children}</TabsContent>
-                  <TabsContent value="matches">{matches}</TabsContent>
-                  <TabsContent value="tournament">{tournament}</TabsContent>
-                </Tabs>
               </main>
             {/* </PlayerProvider> */}
           </ThemeProvider>
