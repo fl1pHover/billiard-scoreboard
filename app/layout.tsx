@@ -3,14 +3,11 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/providers/theme-provider";
 import { SidebarProvider } from "@/components/ui/sidebar";
-import { PlayerProvider } from "@/providers/player-provider";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-;
 import { ChartNoAxesColumn, Trophy, UsersRound } from "lucide-react";
 import { Toaster } from "@/components/ui/sonner";
-import TestForm from "@/components/common/testForm";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -44,7 +41,7 @@ export default function RootLayout({
         {/* <Image src={"/bg.png"} alt="bg" fill={true} className="object-cover blur-md brightness-50" /> */}
         <SidebarProvider>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-            <PlayerProvider>
+            {/* <PlayerProvider> */}
               {/* <AppSidebar /> */}
               <main className="w-full max-w-6xl mx-auto relative p-4">
                 <Tabs defaultValue="leaderboard" className="bg-none">
@@ -71,7 +68,7 @@ export default function RootLayout({
                             <DialogTitle>Тоглогч нэмэх</DialogTitle>
                             <DialogDescription>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, quam!</DialogDescription>
                           </DialogHeader>
-                          <TestForm />
+                          {/* <TestForm /> */}
                         </DialogContent>
                       </form>
                     </Dialog>
@@ -81,7 +78,7 @@ export default function RootLayout({
                   <TabsContent value="tournament">{tournament}</TabsContent>
                 </Tabs>
               </main>
-            </PlayerProvider>
+            {/* </PlayerProvider> */}
           </ThemeProvider>
         </SidebarProvider>
       </body>

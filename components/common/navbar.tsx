@@ -1,7 +1,6 @@
 import { ModeToggle } from "./modeToggle";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import TestForm from "./testForm";
 import { SidebarTrigger } from "../ui/sidebar";
 
 export default function Navbar() {
@@ -23,7 +22,6 @@ export default function Navbar() {
                   <DialogTitle>Тоглогч нэмэх</DialogTitle>
                   <DialogDescription>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, quam!</DialogDescription>
                 </DialogHeader>
-                <TestForm />
               </DialogContent>
             </form>
           </Dialog>
