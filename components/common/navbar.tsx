@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 export default function Navbar() {
   const pathname = usePathname();
 
-  
+  // v2
   return (
     <nav className="flex relative items-center justify-between w-full">
       <div className="flex items-center justify-between w-full border-b py-4">
