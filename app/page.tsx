@@ -19,7 +19,8 @@ export interface Player {
   isVeteran: boolean;
 }
 
-// little-state-machine GlobalState
+// hello
+
 declare module "little-state-machine" {
   interface GlobalState {
     players: Player[];
