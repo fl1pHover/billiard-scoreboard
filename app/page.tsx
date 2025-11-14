@@ -19,7 +19,7 @@ export interface Player {
   isVeteran: boolean;
 }
 
-// hello
+// hello ustgalaa
 
 declare module "little-state-machine" {
   interface GlobalState {
