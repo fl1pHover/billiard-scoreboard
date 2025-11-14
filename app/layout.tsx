@@ -28,6 +28,8 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head />
+
+      {/* Za end 1 ym nemsen */}
       <body>
         <ThemeProvider
           attribute="class"
